@@ -11,4 +11,13 @@ const preview: Preview = {
   },
 };
 
+// export const decorators = [
+// (Story) => (
+// <ThemeProvider theme={defaultTheme}>
+// <GlobalStyle/>
+// <Story/>
+// </ThemeProvider>
+// )
+// ]
+
 export default preview;
