@@ -9,9 +9,14 @@
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_4b402e93b71bb58"
+    "chromatic": "npx chromatic --project-token=chpt_4b402e93b71bb58",
+    "genTypes": "supabase gen types typescript --project-id paxswvxczoiubquzfirr > types/supabase.ts",
+    "supabase:login": "npx supabase login",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.3.0",
+    "@supabase/supabase-js": "^2.43.0",
     "chromatic": "^11.3.0",
     "next": "14.2.3",
     "react": "^18",
@@ -38,6 +43,7 @@
     "eslint-plugin-storybook": "^0.8.0",
     "postcss": "^8",
     "storybook": "^8.1.0-alpha.7",
+    "supabase": "^1.164.1",
     "tailwindcss": "^3.4.1",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
     "typescript": "^5"
