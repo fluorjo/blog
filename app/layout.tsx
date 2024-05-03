@@ -1,8 +1,11 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Headers';
+import Sidebar from '@/components/Sidebar';
+import { cn } from '@/utils/style';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '../styles/globals.css';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -18,18 +21,15 @@ export default function RootLayout({
     return (
         <html lang="en">
             <head></head>
-
             <body>
                 {/* <Providers> */}
                 <div
-                    className={
-                        // cn(
-                        'flex h-screen w-screen text-sm lg:text-base'
-                        // ,inter.className,
-                        // )
-                    }
+                    className={cn(
+                        'flex h-screen w-screen text-sm lg:text-base',
+                        inter.className,
+                    )}
                 >
-                    {/* <Sidebar /> */}
+                    <Sidebar />
                     <div className="flex flex-1 flex-col">
                         <Header />
                         <div className="flex flex-1 flex-col overflow-y-auto">

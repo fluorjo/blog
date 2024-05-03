@@ -2,11 +2,11 @@
 
 import { FC } from 'react';
 // import IconButton from './IconButton';
-// import { useSidebar } from './Providers';
 import { HiBars3 } from 'react-icons/hi2';
+import { useSidebar } from './Providers';
 
 const Header: FC = () => {
-    // const { isOpen, setIsOpen } = useSidebar();
+    const { isOpen, setIsOpen } = useSidebar();
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
@@ -15,6 +15,7 @@ const Header: FC = () => {
                         className="btn btn-square btn-ghost"
                         role="button"
                         tabIndex={0}
+                        onClick={() => setIsOpen((t) => !t)}
                     >
                         <HiBars3 className="size-6" />
                     </button>
