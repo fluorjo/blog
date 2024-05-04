@@ -5,6 +5,7 @@ import { cn } from '@/utils/style';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '../styles/globals.css';
+import Providers from '@/components/Providers';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,7 +23,7 @@ export default function RootLayout({
         <html lang="en">
             <head></head>
             <body>
-                {/* <Providers> */}
+                <Providers>
                 <div
                     className={cn(
                         'flex h-screen w-screen text-sm lg:text-base',
@@ -38,7 +39,7 @@ export default function RootLayout({
                         </div>
                     </div>
                 </div>
-                {/* </Providers> */}
+                </Providers>
             </body>
         </html>
     );

@@ -20,23 +20,23 @@ export default function Post({
     );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({
-    query,
-    req,
-}) => {
-    const { id } = query;
+// export const getServerSideProps: GetServerSideProps = async ({
+//     query,
+//     req,
+// }) => {
+//     const { id } = query;
 
-    const supabase = createClient(req.cookies);
-    const { data } = await supabase
-        .from('Post')
-        .select('*')
-        .eq('id', Number(params?.id));
-    if (!data || !data[0]) return { notFound: true };
+//     const supabase = createClient(req.cookies);
+//     const { data } = await supabase
+//         .from('Post')
+//         .select('*')
+//         .eq('id', Number(params?.id));
+//     if (!data || !data[0]) return { notFound: true };
 
-    const response = await supabase.from('Post').select('*');
-    return {
-        props: {
-            id,
-        },
-    };
-};
+//     const response = await supabase.from('Post').select('*');
+//     return {
+//         props: {
+//             id,
+//         },
+//     };
+// };
