@@ -1,42 +1,39 @@
-import type { Post } from '@/types';
+import PostPage from '@/components/PostPage';
+import { getPost } from '@/utils/fetch';
 import { createClient } from '@/utils/supabase/server';
-import { GetServerSideProps } from 'next';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
-type PostProps = Post;
+type PostProps = { params: { id: string } };
 
-export default function Post({
-    id,
-    title,
-    category,
-    tags,
-    content,
-    created_at,
-    preview_image_url,
-}: PostProps) {
-    return (
-        <div>
-            <h1>dddddddd</h1>
-        </div>
-    );
+export const generateMetadata = async ({
+  params,
+}: PostProps): Promise<Metadata> => {
+  const post = await getPost(params.id);
+
+  return {
+    title: post?.title,
+    description: post?.content?.split('.')[0],
+    openGraph: post?.preview_image_url
+      ? {
+          images: [
+            {
+              url: post.preview_image_url,
+            },
+          ],
+        }
+      : undefined,
+  };
+};
+
+export const generateStaticParams = async () => {
+  const supabase = createClient();
+  const { data } = await supabase.from('Post').select('id');
+  return data?.map(({ id }) => ({ params: { id: id.toString() } })) ?? [];
+};
+
+export default async function Post({ params }: PostProps) {
+  const post = await getPost(params.id);
+  if (!post) return notFound();
+  return <PostPage {...post} />;
 }
-
-// export const getServerSideProps: GetServerSideProps = async ({
-//     query,
-//     req,
-// }) => {
-//     const { id } = query;
-
-//     const supabase = createClient(req.cookies);
-//     const { data } = await supabase
-//         .from('Post')
-//         .select('*')
-//         .eq('id', Number(params?.id));
-//     if (!data || !data[0]) return { notFound: true };
-
-//     const response = await supabase.from('Post').select('*');
-//     return {
-//         props: {
-//             id,
-//         },
-//     };
-// };
