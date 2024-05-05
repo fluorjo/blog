@@ -1,17 +1,18 @@
-import removeImports from 'next-remove-imports';
+const removeImports = require('next-remove-imports')();
 
-export default removeImports({
+/** @type {import('next').NextConfig} */
+const nextConfig = {
     reactStrictMode: true,
-    experimental: { esmExternals: true },
-
     images: {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'paxswvxczoiubquzfirr.supabase.co',
+                hostname: 'vyfkwfwikstziyoxdiap.supabase.co',
                 port: '',
                 pathname: '/storage/v1/object/public/**',
             },
         ],
     },
-});
+};
+
+module.exports = removeImports(nextConfig);
