@@ -12,7 +12,8 @@
     "chromatic": "npx chromatic --project-token=chpt_4b402e93b71bb58",
     "genTypes": "supabase gen types typescript --project-id paxswvxczoiubquzfirr > types/supabase.ts",
     "supabase:login": "npx supabase login",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "vercel-deploy": "next build && next export"
   },
   "dependencies": {
     "@supabase/ssr": "^0.3.0",

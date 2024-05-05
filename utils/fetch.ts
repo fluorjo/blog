@@ -50,11 +50,8 @@ export const getPost = cache(async (id: string) => {
     // 태그를 깔끔하게 가져오도록 수정
     const modifiedData = {
         ...data[0],
-        tags: data[0].tags
-            ? JSON.parse(data[0].tags)
-            : [],
+        tags: data[0].tags ? JSON.parse(data[0].tags) : [],
     };
-console.log('swwww',modifiedData)
     return modifiedData;
 });
 export const getTags = cache(async () => {
@@ -68,7 +65,6 @@ export const getTags = cache(async () => {
         d.tags ? JSON.parse(d.tags) : [],
     ) as string[];
     console.log('tagsArray', tagsArray);
-
     return Array.from(new Set(tagsArray.map((tag) => tag.trim())));
 });
 
