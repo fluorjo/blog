@@ -12,6 +12,7 @@ export async function DELETE() {
         .from('Post')
         .delete()
         .eq('category', 'Test');
+
     if (error) {
         return Response.json({ error }, { status: 500 });
     } else {
@@ -23,7 +24,7 @@ export async function POST(request: NextRequest) {
     const supabase = await createClient(cookies());
 
     const formEntries = Array.from((await request.formData()).entries());
-    
+
     const formData = formEntries.reduce<Record<string, FormDataEntryValue>>(
         (acc, [key, value]) => {
             acc[key] = value;
@@ -69,12 +70,17 @@ export async function POST(request: NextRequest) {
 
     if (data && data.length === 1) {
         const { tags, ...reset } = data[0];
-        return Response.json({
-            ...reset,
-            tags: JSON.parse(tags) as string[],
-        },{status:200});
+        return Response.json(
+            {
+                ...reset,
+                tags: JSON.parse(tags) as string[],
+            },
+            { status: 200 },
+        );
     } else {
-        return Response.json({error:'Internal Server Error!'}, {status:500})
+        return Response.json(
+            { error: 'Internal Server Error' },
+            { status: 500 },
+        );
     }
-    // } else console.log(data)
 }

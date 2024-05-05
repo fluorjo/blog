@@ -9,7 +9,6 @@ type IconButtonProps<Component extends ElementType> =
         className?: string;
         component?: Component;
         label: string;
-
     };
 
 const IconButton = <Component extends ElementType = 'button'>({

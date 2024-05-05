@@ -1,7 +1,7 @@
-import removeImports from 'next-remove-imports';
+const removeImports = require('next-remove-imports')();
 
-export default removeImports({
-
+/** @type {import('next').NextConfig} */
+const nextConfig = {
     reactStrictMode: true,
     images: {
         remotePatterns: [
@@ -13,4 +13,6 @@ export default removeImports({
             },
         ],
     },
-})
+};
+
+module.exports = removeImports(nextConfig);

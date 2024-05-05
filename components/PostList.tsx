@@ -29,7 +29,7 @@ const PostList: FC<PostListProps> = ({
         fetchNextPage,
         hasNextPage,
     } = useInfiniteQuery({
-        queryKey: ['posts',category,tag],
+        queryKey: ['posts', category, tag],
         queryFn: async ({ pageParam }) => {
             let request = supabase.from('Post').select('*');
             if (category) request = request.eq('category', category);

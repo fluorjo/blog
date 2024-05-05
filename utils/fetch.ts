@@ -25,11 +25,15 @@ export const getPosts = cache(
         const { data } = await request
             .order('created_at', { ascending: false })
             .range(page, page + 4);
-
-        return data?.map((post) => ({
+        console.log(data);
+        const modifiedData = data?.map((post) => ({
             ...post,
-            tags: JSON.parse(post.tags) as string[],
+            tags: post.tags
+                ? post.tags.split(',').map((tag) => tag.trim())
+                : [],
         }));
+
+        return modifiedData;
     },
 );
 
@@ -40,23 +44,32 @@ export const getPost = cache(async (id: string) => {
             : createBrowserClient();
 
     const { data } = await supabase.from('Post').select('*').eq('id', id);
-
+    console.log('data', data);
     if (!data) return null;
-    return {
-        ...data[0],
-        tags: JSON.parse(data[0].tags) as string[],
-    };
-});
 
+    // 태그를 깔끔하게 가져오도록 수정
+    const modifiedData = {
+        ...data[0],
+        tags: data[0].tags
+            ? JSON.parse(data[0].tags)
+            : [],
+    };
+console.log('swwww',modifiedData)
+    return modifiedData;
+});
 export const getTags = cache(async () => {
     const supabase =
         typeof window === 'undefined'
             ? createServerClient()
             : createBrowserClient();
     const { data } = await supabase.from('Post').select('tags');
-    return Array.from(
-        new Set(data?.flatMap((d) => JSON.parse(d.tags))),
+    console.log(data);
+    const tagsArray = data?.flatMap((d) =>
+        d.tags ? JSON.parse(d.tags) : [],
     ) as string[];
+    console.log('tagsArray', tagsArray);
+
+    return Array.from(new Set(tagsArray.map((tag) => tag.trim())));
 });
 
 export const getCategories = cache(async () => {

@@ -3,28 +3,28 @@ import { getPosts, getTags } from '@/utils/fetch';
 import { Metadata } from 'next';
 
 type TagPageProps = {
-  params: { tag: string };
+    params: { tag: string };
 };
 
 export const generateMetadata = ({ params }: TagPageProps): Metadata => {
-  return {
-    title: `Fluorjo - #${decodeURIComponent(params.tag)}`,
-    description: 'Fluorjo',
-  };
+    return {
+        title: `Fluorjo - #${decodeURIComponent(params.tag)}`,
+        description: 'Fluorjo',
+    };
 };
 
 export const generateStaticParams = async () => {
-  const tags = await getTags();
-  return tags.map((tag) => ({ tag }));
+    const tags = await getTags();
+    return tags.map((tag) => ({ tag }));
 };
 
 export default async function TagPosts({
-  params,
+    params,
 }: {
-  params: { tag: string };
+    params: { tag: string };
 }) {
-  const tag = decodeURIComponent(params.tag);
-  const posts = await getPosts({ tag });
+    const tag = decodeURIComponent(params.tag);
+    const posts = await getPosts({ tag });
 
-  return <PostList tag={tag} initialPosts={posts} />;
+    return <PostList tag={tag} initialPosts={posts} />;
 }

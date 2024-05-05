@@ -3,30 +3,33 @@ import { getCategories, getPosts } from '@/utils/fetch';
 import { Metadata } from 'next';
 
 type CategoryPageProps = {
-  params: { category: string };
+    params: { category: string };
 };
 
 export const generateMetadata = ({ params }: CategoryPageProps): Metadata => {
-  return {
-    title: `fluorjo - ${decodeURIComponent(params.category)}`,
-    description: 'fluorjo의 블로그',
-  };
+    return {
+        title: `fluorjo - ${decodeURIComponent(params.category)}`,
+        description: 'fluorjo의 블로그',
+    };
 };
 
 export const generateStaticParams = async () => {
-  const categories = await getCategories();
-  return categories.map((category) => ({ category }));
+    const categories = await getCategories();
+    return categories.map((category) => ({ category }));
 };
 
 export default async function CategoryPosts({
-  params,
+    params,
 }: {
-  params: { category: string };
+    params: { category: string };
 }) {
-  const category = decodeURIComponent(params.category);
-  const posts = await getPosts({ category });
+    const category = decodeURIComponent(params.category);
+    const posts = await getPosts({ category });
 
-  return (
-    <PostList category={decodeURIComponent(category)} initialPosts={posts} />
-  );
+    return (
+        <PostList
+            category={decodeURIComponent(category)}
+            initialPosts={posts}
+        />
+    );
 }

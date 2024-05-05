@@ -20,7 +20,7 @@ const PostCard: FC<PostCardProps> = ({
                 <Image
                     src={preview_image_url ?? '/thumbnail.svg'}
                     fill
-                    sizes='360px'
+                    sizes="360px"
                     alt={title}
                     className="object-cover"
                 />
