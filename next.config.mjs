@@ -2,6 +2,8 @@ import removeImports from 'next-remove-imports';
 
 export default removeImports({
     reactStrictMode: true,
+    experimental: { esmExternals: true },
+
     images: {
         remotePatterns: [
             {
