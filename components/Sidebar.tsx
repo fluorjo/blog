@@ -14,7 +14,7 @@ const Sidebar: FC = () => {
     return (
         <div
             className={cn(
-                'absolute z-10 min-h-screen flex-col gap-6 border-r bg-white pl-10 pr-6 text-base lg:relative',
+                'absolute z-10 min-h-screen flex-col gap-6 border-r  pl-10 pr-6 text-base lg:relative bg-white w-36 pt-14',
                 isOpen ? 'flex' : 'hidden',
             )}
         >
@@ -46,7 +46,7 @@ const Sidebar: FC = () => {
                     {category}
                 </Link>
             ))}
-            <div className="mt-10 flex items-center gap-4">
+            <div className="mt-10 flex items-center gap-4 flex-col ">
                 <IconButton
                     Icon={AiFillGithub}
                     component={Link}
