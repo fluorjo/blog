@@ -1,8 +1,12 @@
+'use client'
 import { getTags } from '@/utils/fetch';
+import { useTags } from '@/utils/hooks';
 import Link from 'next/link';
 
-export default async function Tag() {
-    const tags = await getTags();
+export default function Tag() {
+    const { data: tags, isLoading, isError } = useTags();
+    if (isLoading) return <div>Loading...</div>;
+    if (isError) return <div>Error fetching tags</div>;
 
     return (
         <div className="flex flex-col items-center gap-2 px-4 pb-24 pt-20">
