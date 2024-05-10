@@ -25,7 +25,6 @@ export const getPosts = cache(
         const { data } = await request
             .order('created_at', { ascending: false })
             .range(page, page + 4);
-        console.log(data);
         const modifiedData = data?.map((post) => ({
             ...post,
             tags: post.tags
@@ -44,7 +43,6 @@ export const getPost = cache(async (id: string) => {
             : createBrowserClient();
 
     const { data } = await supabase.from('Post').select('*').eq('id', id);
-    console.log('data', data);
     if (!data) return null;
 
     // 태그를 깔끔하게 가져오도록 수정
@@ -60,11 +58,9 @@ export const getTags = cache(async () => {
             ? createServerClient()
             : createBrowserClient();
     const { data } = await supabase.from('Post').select('tags');
-    console.log(data);
     const tagsArray = data?.flatMap((d) =>
         d.tags ? JSON.parse(d.tags) : [],
     ) as string[];
-    console.log('tagsArray', tagsArray);
     return Array.from(new Set(tagsArray.map((tag) => tag.trim())));
 });
 

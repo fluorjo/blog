@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
+import PostCRUDComponent from './PostCRUD';
 
 const PostPage: FC<Post> = ({
     title,
@@ -48,6 +49,7 @@ const PostPage: FC<Post> = ({
                 />
             )}
             <MarkdownViewer source={content} className="min-w-full" />
+            <PostCRUDComponent/>
         </div>
     );
 };

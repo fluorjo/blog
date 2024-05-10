@@ -5,7 +5,7 @@ import { format } from 'date-fns';
 import { cookies } from 'next/headers';
 import type { NextRequest } from 'next/server';
 
-export async function DELETE() {
+export async function DELETE(id:number) {
     const supabase = await createClient(cookies());
 
     const { error } = await supabase
@@ -14,6 +14,7 @@ export async function DELETE() {
         .eq('category', 'Test');
 
     if (error) {
+        console.log(error)
         return Response.json({ error }, { status: 500 });
     } else {
         return Response.json({ message: 'success' }, { status: 200 });
