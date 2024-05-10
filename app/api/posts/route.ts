@@ -5,22 +5,6 @@ import { format } from 'date-fns';
 import { cookies } from 'next/headers';
 import type { NextRequest } from 'next/server';
 
-export async function DELETE(id:number) {
-    const supabase = await createClient(cookies());
-
-    const { error } = await supabase
-        .from('Post')
-        .delete()
-        .eq('category', 'Test');
-
-    if (error) {
-        console.log(error)
-        return Response.json({ error }, { status: 500 });
-    } else {
-        return Response.json({ message: 'success' }, { status: 200 });
-    }
-}
-
 export async function POST(request: NextRequest) {
     const supabase = await createClient(cookies());
 
