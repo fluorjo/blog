@@ -5,13 +5,14 @@ import { type NextRequest } from "next/server";
 
 export async function DELETE(
     request: NextRequest,
-    { params }: { params: { id: string } },
+    { params }: { params: { id: string | number } },
 ) : Promise<any>{
+
     const supabase = await createClient(cookies());
     const { data, error } = await supabase
         .from('Post')
         .delete()
-        .eq('id', parseInt(params.id));
+        .eq('id', parseInt(params.id.toString()));
 
     if (error) {
         console.log(error);
