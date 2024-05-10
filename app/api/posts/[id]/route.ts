@@ -6,7 +6,7 @@ import { type NextRequest } from "next/server";
 export async function DELETE(
     _: Request,
     { params }: { params: { id: number } },
-) {
+) : Promise<any>{
     const supabase = await createClient(cookies());
     const { data, error } = await supabase
         .from('Post')
