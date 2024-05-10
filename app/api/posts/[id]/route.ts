@@ -4,7 +4,7 @@ import { cookies } from 'next/headers';
 import { type NextRequest } from "next/server";
 
 export async function DELETE(
-    _request: NextRequest,
+    _: Request,
     { params }: { params: { id: number } },
 ) {
     const supabase = await createClient(cookies());
