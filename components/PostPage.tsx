@@ -7,6 +7,7 @@ import { FC } from 'react';
 import PostCRUDComponent from './PostCRUD';
 
 const PostPage: FC<Post> = ({
+    id,
     title,
     category,
     tags,
@@ -49,7 +50,7 @@ const PostPage: FC<Post> = ({
                 />
             )}
             <MarkdownViewer source={content} className="min-w-full" />
-            <PostCRUDComponent/>
+            <PostCRUDComponent id={id}/>
         </div>
     );
 };
