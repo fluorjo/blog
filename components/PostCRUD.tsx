@@ -1,7 +1,7 @@
 'use client';
 import Button from './Button';
 interface PostCRUDComponentProps {
-    id: number;
+    id: string;
 }
 
 export default function PostCRUDComponent({ id }: PostCRUDComponentProps) {
