@@ -1,7 +1,7 @@
-import Footer from '@/components/Footer';
-import Header from '@/components/Headers';
 import Providers from '@/components/Providers';
-import Sidebar from '@/components/Sidebar';
+import Footer from '@/components/layout/blogLayout/_components/Footer';
+import Header from '@/components/layout/blogLayout/_components/Header';
+import Sidebar from '@/components/layout/blogLayout/_components/Sidebar';
 import { cn } from '@/utils/style';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
