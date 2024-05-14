@@ -1,9 +1,10 @@
 'use client';
 
+import { useSidebar } from '@/components/Providers';
 import { FC } from 'react';
 // import IconButton from './IconButton';
 import { HiBars3 } from 'react-icons/hi2';
-import { useSidebar } from './Providers';
+
 
 const Header: FC = () => {
     const { isOpen, setIsOpen } = useSidebar();

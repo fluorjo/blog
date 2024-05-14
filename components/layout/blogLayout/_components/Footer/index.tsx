@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import { AiOutlineSetting } from 'react-icons/ai';
 import { BsPencilSquare } from 'react-icons/bs';
-import IconButton from './IconButton';
+
 import Link from 'next/link';
+import IconButton from '@/components/IconButton';
 
 const Footer: FC = () => {
     return (

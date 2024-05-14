@@ -1,11 +1,12 @@
 'use client';
+import IconButton from '@/components/IconButton';
+import { useSidebar } from '@/components/Providers';
 import { useCategories } from '@/utils/hooks';
 import { cn } from '@/utils/style';
 import Link from 'next/link';
 import { FC } from 'react';
 import { AiFillGithub, AiOutlineClose } from 'react-icons/ai';
-import IconButton from './IconButton';
-import { useSidebar } from './Providers';
+
 
 const Sidebar: FC = () => {
     const { isOpen, setIsOpen } = useSidebar();
