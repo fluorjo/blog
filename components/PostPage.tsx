@@ -25,7 +25,7 @@ const PostPage: FC<Post> = ({
                 >
                     {category}
                 </Link>
-                
+
                 {tags.map((tag) => (
                     <Link
                         href={`/tags/${tag}`}
@@ -50,7 +50,7 @@ const PostPage: FC<Post> = ({
                 />
             )}
             <MarkdownViewer source={content} className="min-w-full" />
-            <PostCRUDComponent id={id+''}/>
+            <PostCRUDComponent id={id + ''} />
         </div>
     );
 };

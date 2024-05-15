@@ -28,7 +28,7 @@ const IconButton = <Component extends ElementType = 'button'>({
 
         <Icon
             className={cn(
-                'h-5 w-5 transition-all lg:h-6 lg:w-6',
+                'h-5 w-5 transition-all lg:h-6 lg:w-6 text-primary hover:text-base-100', 
                 iconClassname,
             )}
         />,

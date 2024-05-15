@@ -1,12 +1,13 @@
 'use client';
-import IconButton from '@/components/IconButton';
 import { useSidebar } from '@/components/Providers';
+import IconButton from '@/components/common/IconButton';
+import Text from '@/components/common/Text';
 import { useCategories } from '@/utils/hooks';
 import { cn } from '@/utils/style';
 import Link from 'next/link';
 import { FC } from 'react';
-import { AiFillGithub, AiOutlineClose } from 'react-icons/ai';
-
+import { AiOutlineClose } from 'react-icons/ai';
+import { IoLogoGithub } from 'react-icons/io';
 
 const Sidebar: FC = () => {
     const { isOpen, setIsOpen } = useSidebar();
@@ -26,34 +27,20 @@ const Sidebar: FC = () => {
                     label="sidebarClose"
                 />
             </div>
-            <Link
-                href={'/'}
-                className="w-48 font-medium text-gray-600 hover:underline"
-            >
-                HOME
-            </Link>
-            <Link
-                href={'/tags'}
-                className="w-48 font-medium text-gray-600 hover:underline"
-            >
-                TAG
-            </Link>
+            <Text link="/">HOME</Text>
+            <Text link="/tags">TAG</Text>
+
             {existingCategories?.map((category) => (
-                <Link
-                    key={category}
-                    href={`/categories/${category}`}
-                    className="w-48 font-medium text-gray-600 hover:underline"
-                >
+                <Text key={category} link={`/categories/${category}`}>
                     {category}
-                </Link>
+                </Text>
             ))}
             <div className="mt-10 flex items-center gap-4 flex-col ">
                 <IconButton
-                    Icon={AiFillGithub}
+                    Icon={IoLogoGithub}
                     component={Link}
                     label="githubLink"
-                    href={'https://github.com/fluorjo'}
-                    target="_blank"
+                    href="http://www.github.com/fluorjo"
                 />
                 {/*eslint-disable-next-line @next/next/no-img-element*/}
                 <img

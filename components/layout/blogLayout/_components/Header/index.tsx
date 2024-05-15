@@ -2,9 +2,7 @@
 
 import { useSidebar } from '@/components/Providers';
 import { FC } from 'react';
-// import IconButton from './IconButton';
 import { HiBars3 } from 'react-icons/hi2';
-
 
 const Header: FC = () => {
     const { isOpen, setIsOpen } = useSidebar();
@@ -23,7 +21,7 @@ const Header: FC = () => {
                 </div>
             </div>
             <div className="navbar-center">
-                Text?
+                {/* Text?
                 <div className="flex flex-row flex-none">
                     <ul className="menu menu-horizontal px-1">
                         <li>
@@ -43,7 +41,7 @@ const Header: FC = () => {
                             </details>
                         </li>
                     </ul>
-                </div>
+                </div> */}
             </div>
             <div className="navbar-end">
                 <label className="input input-bordered flex items-center gap-2">

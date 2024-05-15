@@ -1,10 +1,10 @@
 'use client';
 
+import Button from '@/components/common/Button';
 import { createClient } from '@/utils/supabase/client';
 import { User } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
 import { FC } from 'react';
-import Button from './Button';
 
 interface AdminDashboardProps {
     user: User;

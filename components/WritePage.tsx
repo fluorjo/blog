@@ -1,6 +1,6 @@
 'use client';
 
-import Button from '@/components/Button';
+import Button from '@/components/common/Button';
 import Input from '@/components/Input';
 import { MarkdownEditor } from '@/components/Markdown';
 import { useCategories, useTags } from '@/utils/hooks';
