@@ -33,6 +33,10 @@ export default function RootLayout({
                         <Sidebar />
                         <div className="flex flex-1 flex-col">
                             <Header />
+                            <link
+                                href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+                                rel="stylesheet"
+                            />
                             <div className="flex flex-1 flex-col overflow-y-auto">
                                 <main className="flex-1">{children}</main>
                                 <Footer />
