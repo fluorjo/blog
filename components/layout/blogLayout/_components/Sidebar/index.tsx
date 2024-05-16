@@ -6,7 +6,7 @@ import { useCategories } from '@/utils/hooks';
 import { cn } from '@/utils/style';
 import Link from 'next/link';
 import { FC } from 'react';
-import { AiOutlineClose } from 'react-icons/ai';
+import { HiBars3 } from 'react-icons/hi2';
 import { IoLogoGithub } from 'react-icons/io';
 
 const Sidebar: FC = () => {
@@ -16,17 +16,24 @@ const Sidebar: FC = () => {
     return (
         <div
             className={cn(
-                'absolute z-10 min-h-screen flex-col gap-6 border-r  pl-10 pr-6 text-base lg:relative bg-white w-36 pt-14',
+                'absolute z-10 min-h-screen flex-col gap-6 border-r  pl-10 pr-6 text-base lg:relative bg-white w-36 pt-4',
                 isOpen ? 'flex' : 'hidden',
             )}
         >
-            <div className={'flex justify-end lg:hidden'}>
+            {/* <div className={'flex justify-end lg:hidden'}>
                 <IconButton
                     Icon={AiOutlineClose}
                     onClick={() => setIsOpen(false)}
                     label="sidebarClose"
                 />
-            </div>
+            </div> */}
+            {isOpen ? (
+                <IconButton
+                    Icon={HiBars3}
+                    label="githubLink"
+                    onClick={() => setIsOpen((t) => !t)}
+                />
+            ) : null}
             <Text link="/">HOME</Text>
             <Text link="/tags">TAG</Text>
 

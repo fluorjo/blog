@@ -1,24 +1,22 @@
 'use client';
 
 import { useSidebar } from '@/components/Providers';
+import IconButton from '@/components/common/IconButton';
 import { FC } from 'react';
 import { HiBars3 } from 'react-icons/hi2';
 
 const Header: FC = () => {
     const { isOpen, setIsOpen } = useSidebar();
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100 pl-8">
             <div className="navbar-start">
-                <div className="">
-                    <button
-                        className="btn btn-square btn-ghost"
-                        role="button"
-                        tabIndex={0}
+                {!isOpen ? (
+                    <IconButton
+                        Icon={HiBars3}
+                        label="sideBarOpen"
                         onClick={() => setIsOpen((t) => !t)}
-                    >
-                        <HiBars3 className="size-6" />
-                    </button>
-                </div>
+                    />
+                ) : null}
             </div>
             <div className="navbar-center">
                 {/* Text?
