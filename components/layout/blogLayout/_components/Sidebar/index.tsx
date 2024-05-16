@@ -20,17 +20,10 @@ const Sidebar: FC = () => {
                 isOpen ? 'flex' : 'hidden',
             )}
         >
-            {/* <div className={'flex justify-end lg:hidden'}>
-                <IconButton
-                    Icon={AiOutlineClose}
-                    onClick={() => setIsOpen(false)}
-                    label="sidebarClose"
-                />
-            </div> */}
             {isOpen ? (
                 <IconButton
                     Icon={HiBars3}
-                    label="githubLink"
+                    label="sideBarClose"
                     onClick={() => setIsOpen((t) => !t)}
                 />
             ) : null}
