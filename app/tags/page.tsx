@@ -1,7 +1,6 @@
-'use client'
-import { getTags } from '@/utils/fetch';
+'use client';
+import Text from '@/components/common/Text';
 import { useTags } from '@/utils/hooks';
-import Link from 'next/link';
 
 export default function Tag() {
     const { data: tags, isLoading, isError } = useTags();
@@ -13,13 +12,15 @@ export default function Tag() {
             <h1 className="mb-8 text-center text-2xl font-semibold">태그</h1>
             <div className="container flex flex-wrap justify-center gap-2">
                 {tags?.map((tag) => (
-                    <Link
-                        href={`/tags/${tag}`}
+                    <Text
+                        link={`/tags/${tag}`}
                         key={tag}
-                        className="text-xl text-gray-500 underline hover:text-gray-700"
+                        size="xl"
+                        color="grey"
+                        className="underline hover:text-gray-700"
                     >
                         {tag}
-                    </Link>
+                    </Text>
                 ))}
             </div>
         </div>
