@@ -54,10 +54,10 @@ export async function POST(request: NextRequest) {
         .select();
 
     if (data && data.length === 1) {
-        const { tags, ...reset } = data[0];
+        const { tags, ...rest } = data[0];
         return Response.json(
             {
-                ...reset,
+                ...rest,
                 tags: JSON.parse(tags) as string[],
             },
             { status: 200 },

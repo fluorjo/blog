@@ -110,7 +110,7 @@ const EditPostPage: FC<Post> = ({
                     />
                 </div>
                 <Button type="submit" className="mt-4">
-                수정하기
+                    수정하기
                 </Button>
             </form>
         </div>
