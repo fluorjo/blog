@@ -1,6 +1,7 @@
 import { cache } from 'react';
 import { createClient as createBrowserClient } from './supabase/client';
 import { createClient as createServerClient } from './supabase/server';
+import { revalidatePath } from 'next/cache';
 
 export const getPosts = cache(
     async ({
@@ -50,8 +51,11 @@ export const getPost = cache(async (id: string) => {
         ...data[0],
         tags: data[0].tags ? JSON.parse(data[0].tags) : [],
     };
+    revalidatePath(`/posts/${id}`)
     return modifiedData;
+
 });
+
 export const getTags = cache(async () => {
     const supabase =
         typeof window === 'undefined'

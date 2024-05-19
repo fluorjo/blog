@@ -68,14 +68,14 @@ const EditPostPage: FC<Post> = ({
             </Text>
             <form onSubmit={handleEditPost}>
                 <div className="flex flex-col gap-3">
-                    <Input type="text" value={title} ref={titleRef} />
+                    <Input type="text" ref={titleRef} defaultValue={title} />
                     <Input type="file" accept="image/*" ref={fileRef} />
                     <ReactSelect
                         options={(existingCategories ?? []).map((category) => ({
                             label: category,
                             value: category,
                         }))}
-                        value={
+                        defaultValue={
                             category
                                 ? { label: category, value: category }
                                 : null
