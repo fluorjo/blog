@@ -43,6 +43,7 @@ const PostPage: FC<Post> = ({
                 <Text color="grey">
                     {format(new Date(created_at), 'yyyy년 M월 d일 HH:mm')}
                 </Text>
+                <PostCRUDComponent id={id + ''} />
             </div>
             {preview_image_url && (
                 <Image
@@ -55,7 +56,6 @@ const PostPage: FC<Post> = ({
                 />
             )}
             <MarkdownViewer source={content} className="min-w-full" />
-            <PostCRUDComponent id={id + ''} />
         </div>
     );
 };

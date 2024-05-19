@@ -1,5 +1,7 @@
 'use client';
-import Button from '@/components/common/Button';
+import Link from 'next/link';
+import { BsPencilFill, BsTrash } from 'react-icons/bs';
+import IconButton from './common/IconButton';
 
 interface PostCRUDComponentProps {
     id: string;
@@ -7,17 +9,22 @@ interface PostCRUDComponentProps {
 
 export default function PostCRUDComponent({ id }: PostCRUDComponentProps) {
     return (
-        <div>
-            <Button
-                type="button"
+        <div className="flex flex-row  gap-x-2">
+            <IconButton
+                Icon={BsPencilFill}
+                component={Link}
+                label="editPost"
+                href={`${id}/edit`}
+            />
+            <IconButton
+                Icon={BsTrash}
+                label="deletePost"
                 onClick={() => {
                     fetch(`/api/posts/${id}`, {
                         method: 'DELETE',
                     });
                 }}
-            >
-                crud
-            </Button>
+            />
         </div>
     );
 }
