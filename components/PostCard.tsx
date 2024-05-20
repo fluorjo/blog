@@ -3,36 +3,72 @@ import { cn } from '@/utils/style';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
+import { usePostList } from './Providers';
 
 export type PostCardProps = Omit<Post, 'tags'> & {
-  className?: string;
+    className?: string;
 };
 
 const PostCard: FC<PostCardProps> = ({
-  id,
-  title,
-  content,
-  preview_image_url,
-  className,
+    id,
+    title,
+    content,
+    preview_image_url,
+    className,
 }) => {
-  return (
-    <Link href={`/posts/${id}`} className={cn('bg-white', className)}>
-      <div className="relative aspect-[1.8/1] w-full">
-        <Image
-          src={preview_image_url ?? '/thumbnail.svg'}
-          fill
-          sizes="360px"
-          alt={title}
-          className="object-cover"
-          priority
-        />
-      </div>
-      <div className="p-2">
-        <h2 className="text-lg font-medium">{title}</h2>
-        <p className="line-clamp-3 text-sm text-gray-500">{content}</p>
-      </div>
-    </Link>
-  );
+    const { isGrid, setIsGrid } = usePostList();
+
+    return (
+        <>
+            {isGrid ? (
+                <Link
+                    href={`/posts/${id}`}
+                    className={cn('bg-white', className)}
+                >
+                    <div className="relative aspect-[1.8/1] w-full">
+                        <Image
+                            src={preview_image_url ?? '/vector.png'}
+                            fill
+                            sizes="360px"
+                            alt={title}
+                            className="object-cover"
+                            priority
+                        />
+                    </div>
+                    <div className="p-2">
+                        <h2 className="text-lg font-medium">{title}</h2>
+                        <p className="line-clamp-3 text-sm text-gray-500">
+                            {content}
+                        </p>
+                    </div>
+                </Link>
+            ) : (
+                <Link
+                    href={`/posts/${id}`}
+                    className={cn('bg-white ', className)}
+                >
+                    {preview_image_url ? (
+                        <div className="relative aspect-[1.8/1] w-full">
+                            <Image
+                                src={preview_image_url ?? '/vector.png'}
+                                fill
+                                sizes="360px"
+                                alt={title}
+                                className="object-cover"
+                                priority
+                            />
+                        </div>
+                    ) : null}
+                    <div className="p-2 border border-gray-300 rounded-md">
+                        <h2 className="text-lg font-medium">{title}</h2>
+                        <p className="line-clamp-3 text-sm text-gray-500">
+                            {content}
+                        </p>
+                    </div>
+                </Link>
+            )}
+        </>
+    );
 };
 
 export default PostCard;

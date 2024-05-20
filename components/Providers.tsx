@@ -17,9 +17,17 @@ const SidebarContext = createContext<{
     isOpen: true,
     setIsOpen: () => {},
 });
+const PostListContext = createContext<{
+    isGrid: boolean;
+    setIsGrid: Dispatch<SetStateAction<boolean>>;
+}>({
+    isGrid: true,
+    setIsGrid: () => {},
+});
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
     const [isOpen, setIsOpen] = useState(true);
+    const [isGrid, setIsGrid] = useState(true);
 
     const [queryClient] = useState(() => new QueryClient());
 
@@ -27,11 +35,17 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
         () => ({ isOpen, setIsOpen }),
         [isOpen],
     );
+    const postListContextValue = useMemo(
+        () => ({ isGrid, setIsGrid }),
+        [isGrid],
+    );
 
     return (
         <QueryClientProvider client={queryClient}>
             <SidebarContext.Provider value={sidebarContextValue}>
-                {children}
+                <PostListContext.Provider value={postListContextValue}>
+                    {children}
+                </PostListContext.Provider>
             </SidebarContext.Provider>
         </QueryClientProvider>
     );
@@ -40,3 +54,4 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
 export default Providers;
 
 export const useSidebar = () => useContext(SidebarContext);
+export const usePostList = () => useContext(PostListContext);
