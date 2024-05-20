@@ -4,9 +4,11 @@ import { Post } from '@/types';
 import { cn } from '@/utils/style';
 import { createClient } from '@/utils/supabase/client';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import PostCard from './PostCard';
+import IconButton from './common/IconButton';
+import { MdListAlt,MdGridView } from "react-icons/md";
 
 const supabase = createClient();
 
@@ -24,6 +26,8 @@ const PostList: FC<PostListProps> = ({
     initialPosts,
 }) => {
     const { ref, inView } = useInView();
+    const [isGrid, setIsGrid] = useState(true);
+
     const {
         data: postPages,
         fetchNextPage,
@@ -81,12 +85,33 @@ const PostList: FC<PostListProps> = ({
             >
                 {category ? category : `#${tag}`}
             </h1>
-
-            <div className="container grid grid-cols-2 gap-x-4 gap-y-6 pb-24 pt-20 lg:gap-x-7 lg:gap-y-12">
-                {postPages?.pages
-                    .flatMap((page) => page.posts)
-                    .map((post) => <PostCard key={post.id} {...post} />)}
+            <div>
+                <IconButton
+                    Icon={MdGridView}
+                    label="sideBarOpen"
+                    onClick={() => setIsGrid(true)}
+                />
+                <IconButton
+                    Icon={MdListAlt}
+                    label="sideBarOpen"
+                    onClick={() => setIsGrid(false)}
+                />
             </div>
+
+            {isGrid ? (
+                <div className="container grid grid-cols-2 gap-x-4 gap-y-6 pb-24 pt-20 lg:gap-x-7 lg:gap-y-12">
+                    {postPages?.pages
+                        .flatMap((page) => page.posts)
+                        .map((post) => <PostCard key={post.id} {...post} />)}
+                </div>
+            ) : (
+                <div className="container bg-slate-400 gap-x-4 gap-y-6 pb-24 pt-20 lg:gap-x-7 lg:gap-y-12">
+                    {postPages?.pages
+                        .flatMap((page) => page.posts)
+                        .map((post) => <PostCard key={post.id} {...post} />)}
+                </div>
+            )}
+
             <div ref={ref} />
         </div>
     );
