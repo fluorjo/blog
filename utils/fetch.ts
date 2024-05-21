@@ -1,3 +1,4 @@
+import { revalidatePath } from 'next/cache';
 import { cache } from 'react';
 import { createClient as createBrowserClient } from './supabase/client';
 import { createClient as createServerClient } from './supabase/server';
@@ -42,10 +43,7 @@ export const getPost = cache(async (id: string) => {
             ? createServerClient()
             : createBrowserClient();
 
-    const { data } = await supabase
-        .from('Post')
-        .select('*')
-        .eq('id', id);
+    const { data } = await supabase.from('Post').select('*').eq('id', id);
     if (!data) return null;
 
     // 태그를 깔끔하게 가져오도록 수정
@@ -53,7 +51,7 @@ export const getPost = cache(async (id: string) => {
         ...data[0],
         tags: data[0].tags ? JSON.parse(data[0].tags) : [],
     };
-    // updatePost(id)
+    revalidatePath('/');
     return modifiedData;
 });
 
