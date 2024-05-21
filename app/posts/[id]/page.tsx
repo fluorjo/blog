@@ -2,6 +2,7 @@ import PostPage from '@/components/PostPage';
 import { getPost } from '@/utils/fetch';
 import { createClient } from '@/utils/supabase/server';
 import { Metadata } from 'next';
+import { revalidatePath } from 'next/cache';
 import { notFound } from 'next/navigation';
 
 type PostProps = { params: { id: string } };
@@ -34,6 +35,11 @@ export const generateStaticParams = async () => {
 
 export default async function Post({ params }: PostProps) {
     const post = await getPost(params.id);
+    const path = `./${params.id}`
+    console.log(path)
+    revalidatePath(path)
+
+
     if (!post) return notFound();
     return <PostPage {...post} />;
 }

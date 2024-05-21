@@ -46,12 +46,10 @@ export const getPost = cache(async (id: string) => {
     const { data } = await supabase.from('Post').select('*').eq('id', id);
     if (!data) return null;
 
-    // 태그를 깔끔하게 가져오도록 수정
     const modifiedData = {
         ...data[0],
         tags: data[0].tags ? JSON.parse(data[0].tags) : [],
     };
-    revalidatePath('/');
     return modifiedData;
 });
 
