@@ -35,9 +35,7 @@ export const generateStaticParams = async () => {
 
 export default async function Post({ params }: PostProps) {
     const post = await getPost(params.id);
-    const path = `/posts/${params.id}`
-    console.log(path)
-    revalidatePath(path)
+    revalidatePath('/')
 
     if (!post) return notFound();
     return <PostPage {...post} />;
