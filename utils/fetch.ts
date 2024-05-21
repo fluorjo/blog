@@ -54,7 +54,7 @@ export const getPost = cache(async (id: string) => {
         ...data[0],
         tags: data[0].tags ? JSON.parse(data[0].tags) : [],
     };
-    // revalidatePath(`/posts/${id}`);
+    revalidatePath(`/posts/${id}`);
     return modifiedData;
 });
 
