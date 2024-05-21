@@ -37,8 +37,6 @@ export const getPosts = cache(
     },
 );
 
-export const revalidate = 0;
-
 export const getPost = cache(async (id: string) => {
     const supabase =
         typeof window === 'undefined'

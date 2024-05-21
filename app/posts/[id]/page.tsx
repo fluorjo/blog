@@ -32,7 +32,8 @@ export const generateStaticParams = async () => {
     return data?.map(({ id }) => ({ params: { id: id.toString() } })) ?? [];
 };
 
-export const revalidate = 1;
+export const revalidate = 0;
+
 export default async function Post({ params }: PostProps) {
     const post = await getPost(params.id);
 
