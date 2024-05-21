@@ -36,7 +36,9 @@ export const getPosts = cache(
         return modifiedData;
     },
 );
-
+export async function updatePost(id:string) {
+    revalidatePath(`/posts/${id}`);
+  }
 export const getPost = cache(async (id: string) => {
     const supabase =
         typeof window === 'undefined'
@@ -54,7 +56,7 @@ export const getPost = cache(async (id: string) => {
         ...data[0],
         tags: data[0].tags ? JSON.parse(data[0].tags) : [],
     };
-    revalidatePath(`/posts/${id}`);
+    updatePost(id)
     return modifiedData;
 });
 
