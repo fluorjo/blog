@@ -1,7 +1,6 @@
 import { cache } from 'react';
 import { createClient as createBrowserClient } from './supabase/client';
 import { createClient as createServerClient } from './supabase/server';
-import { revalidatePath } from 'next/cache';
 
 export const getPosts = cache(
     async ({
@@ -36,9 +35,7 @@ export const getPosts = cache(
         return modifiedData;
     },
 );
-export async function updatePost(id:string) {
-    revalidatePath(`/posts/${id}`);
-  }
+
 export const getPost = cache(async (id: string) => {
     const supabase =
         typeof window === 'undefined'
@@ -56,7 +53,7 @@ export const getPost = cache(async (id: string) => {
         ...data[0],
         tags: data[0].tags ? JSON.parse(data[0].tags) : [],
     };
-    updatePost(id)
+    // updatePost(id)
     return modifiedData;
 });
 
