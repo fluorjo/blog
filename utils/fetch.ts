@@ -1,4 +1,3 @@
-import { revalidatePath } from 'next/cache';
 import { cache } from 'react';
 import { createClient as createBrowserClient } from './supabase/client';
 import { createClient as createServerClient } from './supabase/server';
@@ -23,9 +22,10 @@ export const getPosts = cache(
         if (category) request = request.eq('category', category);
         if (tag) request = request.like('tags', `%${tag}%`);
 
-        const { data } = await request
+        const { data, error } = await request
             .order('created_at', { ascending: false })
             .range(page, page + 4);
+        if (error) return console.log('posts error', error);
         const modifiedData = data?.map((post) => ({
             ...post,
             tags: post.tags
@@ -55,7 +55,7 @@ export const getPost = cache(async (id: string) => {
         ...data[0],
         tags: data[0].tags ? JSON.parse(data[0].tags) : [],
     };
-    revalidatePath(`/posts/${id}`);
+    // revalidatePath(`/posts/${id}`);
     return modifiedData;
 });
 
