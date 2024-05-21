@@ -1,6 +1,7 @@
 import { cache } from 'react';
 import { createClient as createBrowserClient } from './supabase/client';
 import { createClient as createServerClient } from './supabase/server';
+import { revalidatePath } from 'next/cache';
 
 export const getPosts = cache(
     async ({
@@ -22,10 +23,9 @@ export const getPosts = cache(
         if (category) request = request.eq('category', category);
         if (tag) request = request.like('tags', `%${tag}%`);
 
-        const { data, error } = await request
+        const { data } = await request
             .order('created_at', { ascending: false })
             .range(page, page + 4);
-        if (error) return console.log('posts error', error);
         const modifiedData = data?.map((post) => ({
             ...post,
             tags: post.tags
@@ -43,12 +43,11 @@ export const getPost = cache(async (id: string) => {
             ? createServerClient()
             : createBrowserClient();
 
-    const { data, error } = await supabase
+    const { data } = await supabase
         .from('Post')
         .select('*')
         .eq('id', id);
     if (!data) return null;
-    if (error) return console.log('errroor', error);
 
     // 태그를 깔끔하게 가져오도록 수정
     const modifiedData = {

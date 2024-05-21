@@ -58,7 +58,9 @@ const PostCard: FC<PostCardProps> = ({
                                 priority
                             />
                         </div>
-                    ) : null}
+                    ) : (
+                        <div></div>
+                    )}
                     <div className="p-2 border border-gray-300 rounded-md">
                         <h2 className="text-lg font-medium">{title}</h2>
                         <p className="line-clamp-3 text-sm text-gray-500">
