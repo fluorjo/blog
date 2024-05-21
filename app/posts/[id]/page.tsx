@@ -1,3 +1,7 @@
+'use server'
+ 
+import { revalidatePath } from 'next/cache'
+
 import PostPage from '@/components/PostPage';
 import { getPost } from '@/utils/fetch';
 import { createClient } from '@/utils/supabase/server';
@@ -36,5 +40,6 @@ export default async function Post({ params }: PostProps) {
     const post = await getPost(params.id);
 
     if (!post) return notFound();
+    revalidatePath('/')
     return <PostPage {...post} />;
 }
