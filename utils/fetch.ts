@@ -1,4 +1,3 @@
-import { revalidatePath } from 'next/cache';
 import { cache } from 'react';
 import { createClient as createBrowserClient } from './supabase/client';
 import { createClient as createServerClient } from './supabase/server';
@@ -37,6 +36,8 @@ export const getPosts = cache(
     },
 );
 
+export const revalidate = 0;
+
 export const getPost = cache(async (id: string) => {
     const supabase =
         typeof window === 'undefined'
@@ -44,6 +45,7 @@ export const getPost = cache(async (id: string) => {
             : createBrowserClient();
 
     const { data } = await supabase.from('Post').select('*').eq('id', id);
+
     if (!data) return null;
 
     const modifiedData = {
