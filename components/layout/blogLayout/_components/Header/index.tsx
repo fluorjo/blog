@@ -4,9 +4,13 @@ import { useSidebar } from '@/components/Providers';
 import IconButton from '@/components/common/IconButton';
 import { FC } from 'react';
 import { HiBars3 } from 'react-icons/hi2';
+import { MdArrowBackIos } from "react-icons/md";
+import { useRouter } from "next/navigation"
 
 const Header: FC = () => {
     const { isOpen, setIsOpen } = useSidebar();
+    const router = useRouter()
+
     return (
         <div className="navbar bg-base-100 pl-8">
             <div className="navbar-start">
@@ -17,8 +21,14 @@ const Header: FC = () => {
                         onClick={() => setIsOpen((t) => !t)}
                     />
                 ) : null}
+                         <IconButton
+                        Icon={MdArrowBackIos}
+                        label="sideBarOpen"
+                        onClick={() => router.back()}
+                    />
             </div>
             <div className="navbar-center">
+   
                 {/* Text?
                 <div className="flex flex-row flex-none">
                     <ul className="menu menu-horizontal px-1">
