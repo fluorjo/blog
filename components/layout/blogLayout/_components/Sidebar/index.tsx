@@ -16,7 +16,7 @@ const Sidebar: FC = () => {
     return (
         <div
             className={cn(
-                'absolute z-10 min-h-screen flex-col gap-6 border-r  pl-10 pr-6 text-base lg:relative bg-white w-36 pt-4',
+                'absolute z-10 min-h-screen flex-col gap-6 border-r  pl-10 pr-6 text-base lg:relative bg-white w-36 pt-20',
                 isOpen ? 'flex' : 'hidden',
             )}
         >
@@ -24,6 +24,7 @@ const Sidebar: FC = () => {
                 <IconButton
                     Icon={HiBars3}
                     label="sideBarClose"
+                    className='fixed top-4 left-12'
                     onClick={() => setIsOpen((t) => !t)}
                 />
             ) : null}

@@ -2,33 +2,35 @@
 
 import { useSidebar } from '@/components/Providers';
 import IconButton from '@/components/common/IconButton';
-import { FC } from 'react';
 import { HiBars3 } from 'react-icons/hi2';
-import { MdArrowBackIos } from "react-icons/md";
-import { useRouter } from "next/navigation"
+
+import { useRouter } from 'next/navigation';
+import { FC } from 'react';
+import { MdArrowBackIos } from 'react-icons/md';
 
 const Header: FC = () => {
     const { isOpen, setIsOpen } = useSidebar();
-    const router = useRouter()
+    const router = useRouter();
 
     return (
-        <div className="navbar bg-base-100 pl-8">
-            <div className="navbar-start">
+        <div className="navbar bg-base-300 pl-8">
+            <div className="navbar-start flex flex-row ">
                 {!isOpen ? (
                     <IconButton
                         Icon={HiBars3}
                         label="sideBarOpen"
+                        className="fixed top-4 left-12"
                         onClick={() => setIsOpen((t) => !t)}
                     />
                 ) : null}
-                         <IconButton
-                        Icon={MdArrowBackIos}
-                        label="sideBarOpen"
-                        onClick={() => router.back()}
-                    />
+                <IconButton
+                    Icon={MdArrowBackIos}
+                    label="sideBarOpen"
+                    className="fixed top-4 left-40"
+                    onClick={() => router.back()}
+                />
             </div>
-            <div className="navbar-center">
-   
+            <div className="navbar-center ">
                 {/* Text?
                 <div className="flex flex-row flex-none">
                     <ul className="menu menu-horizontal px-1">
