@@ -12,5 +12,3 @@ jobs:
           notion_secret: ${{ secrets.NOTION_SECRET }}
           notion_database: ${{ secrets.NOTION_DATABASE }}
           branch: ${{ github.ref_name }}
-
-          (Meditate.toNumber() + prop("ㄱ") .toNumber() +prop("ㄱㅇ").toNumber()) / 2
