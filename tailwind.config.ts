@@ -20,7 +20,7 @@ const config: Config = {
         },
     },
     daisyui: {
-      themes: ["lofi", "dark", "cmyk"],
+        themes: ['lofi', 'dark', 'cmyk'],
     },
     plugins: [require('daisyui')],
 };
