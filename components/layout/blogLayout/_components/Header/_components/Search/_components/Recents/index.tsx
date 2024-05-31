@@ -1,8 +1,12 @@
 import Text from '@components/common/Text';
 import { useState } from 'react';
 
+type Props = {
+    handleClose: () => void;
+};
+
 //검색어 개별 삭제도 나중에 하나
-export default function Recents() {
+export default function Recents({ handleClose }: Props) {
     // const [recents, setRecents] = useState<string[]>([]);
     const [recents, setRecents] = useState([]);
 
@@ -34,14 +38,19 @@ export default function Recents() {
                     </div>
                 )}
             </div>
-           <div className="bg-base-300 flex justify-between px-2 py-1">
-                <Text size="sm" weight="bold">
+            <div className="bg-base-300 flex justify-between px-2 py-1 ">
+                <Text size="sm" weight="bold" className="hover:cursor-pointer">
                     검색어 전체 삭제
                 </Text>
-                <Text size="sm" weight="bold">
+                <Text
+                    size="sm"
+                    weight="bold"
+                    onClick={handleClose}
+                    className="hover:cursor-pointer"
+                >
                     닫기
                 </Text>{' '}
-            </div> 
+            </div>
         </div>
     );
 }
