@@ -34,14 +34,14 @@ export default function Recents() {
                     </div>
                 )}
             </div>
-            {/* <div className="bg-base-300 flex justify-between px-2 py-1">
+           <div className="bg-base-300 flex justify-between px-2 py-1">
                 <Text size="sm" weight="bold">
                     검색어 전체 삭제
                 </Text>
                 <Text size="sm" weight="bold">
                     닫기
                 </Text>{' '}
-            </div> */}
+            </div> 
         </div>
     );
 }

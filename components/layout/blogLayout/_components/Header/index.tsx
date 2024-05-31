@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { FC, useState } from 'react';
 import { MdArrowBackIos } from 'react-icons/md';
 import SearchComponent from './_components/Search';
+import "react-toastify/ReactToastify.css";
 
 const Header: FC = () => {
     const { isOpen, setIsOpen } = useSidebar();

@@ -1,6 +1,6 @@
 'use client'
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/ReactToastify.css";
 import Toast from './common/Toast';
 import IconButton from './common/IconButton';
 import { BsFillShareFill, BsPencilFill, BsTrash } from 'react-icons/bs';

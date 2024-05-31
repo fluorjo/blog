@@ -3,6 +3,7 @@
 import classNames from 'classnames';
 import { useState } from 'react';
 import Recents from './_components/Recents';
+import AutoComplete from './_components/AutoComplete';
 
 export default function SearchComponent() {
     const [search, setSearch] = useState('');
@@ -44,7 +45,7 @@ export default function SearchComponent() {
                     { hidden: !isFocused },
                 )}
             >
-                {!search ? <Recents /> : '추천'}
+                {!search ? <Recents /> : <AutoComplete/>}
             </div>
         </div>
     );
