@@ -40,7 +40,7 @@ export default function SearchComponent() {
             </form>
             <div
                 className={classNames(
-                    'w-full border border-primary h-48 absolute bg-primary-content my-2 rounded-md',
+                    'w-full border border-primary h-52 absolute bg-primary-content my-2 rounded-md z-10',
                     { hidden: !isFocused },
                 )}
             >
