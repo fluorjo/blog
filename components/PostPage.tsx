@@ -15,7 +15,7 @@ const PostPage: FC<Post> = ({
     preview_image_url,
 }) => {
     return (
-        <div className="container flex flex-col gap-8 pb-40 pt-20">
+        <div className="container flex flex-col gap-8 pb-40 pt-20 bg">
             <Text size="4xl" weight="bold">
                 {title}
             </Text>

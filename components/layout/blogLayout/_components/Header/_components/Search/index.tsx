@@ -7,14 +7,15 @@ import Recents from './_components/Recents';
 
 export default function SearchComponent() {
     const [search, setSearch] = useState('');
-    const [isFocused, setIsFocused] = useState(false);
+    const [isFocused, setIsFocused] = useState(true);
     return (
-        <div className="mx-auto max-w-md relative">
-            <form action="" className="relative mx-auto w-max">
+        <div className="mx-auto max-w-md relative ">
+            <form action="" className="relative mx-auto w-max ">
                 <input
                     type="search"
                     className="peer cursor-pointer relative z-10 h-12 w-12 rounded-full border bg-transparent pl-12 outline-none focus:cursor-text focus:border-primary focus:pl-16 focus:pr-4
-                    focus:w-full 
+                    w-full 
+                    truncate
                     "
                     value={search}
                     onFocus={() => setIsFocused(true)}
@@ -41,7 +42,7 @@ export default function SearchComponent() {
             </form>
             <div
                 className={classNames(
-                    'w-full border border-primary h-52 absolute bg-primary-content my-2 rounded-md z-10',
+                    'w-full border border-primary h-52 absolute bg-primary-content my-2 rounded-md z-10 ',
                     { hidden: !isFocused },
                 )}
             >

@@ -15,7 +15,7 @@ export default function Recents({ handleClose }: Props) {
     //   setRecents(recents)
     // }, [])
     return (
-        <div className="flex flex-col h-full z-10">
+        <div className="flex flex-col h-full z-10 ">
             <div className="p-2 overflow-hidden flex-1">
                 <div className="border-b border-primary pb-1 mb-2">
                     <Text size="sm" weight="bold">

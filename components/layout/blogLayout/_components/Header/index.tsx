@@ -16,7 +16,7 @@ const Header: FC = () => {
 
 
     return (
-        <div className="navbar pl-8 bg-base-300">
+        <div className="navbar pl-8 bg-base-300 ">
             <div className="navbar-start flex flex-row ">
                 {!isOpen ? (
                     <IconButton

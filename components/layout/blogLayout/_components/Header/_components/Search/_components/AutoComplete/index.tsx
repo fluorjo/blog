@@ -8,17 +8,17 @@ type Props = {
 };
 
 export default function AutoComplete({ query, handleClose }: Props) {
-    const keywords = ['ddd'];
+    const keywords = [''];
 
     // useEffect(() => {
     //   const recents = getRecentKeywords()
     //   setRecents(recents)
     // }, [])
     return (
-        <div className="flex flex-col h-full z-10">
-            <div className="p-2 overflow-hidden flex-1">
-                <div className="border-b border-primary pb-1 mb-2">
-                    <Text size="sm" weight="bold">
+        <div className="flex flex-col h-full z-10 ">
+            <div className="p-2 overflow-hidden flex-1 ">
+                <div className="border-b border-primary pb-1 mb-2 shrink-0">
+                    <Text size="sm" weight="bold" className=" ml-1">
                         {query}
                     </Text>
                 </div>
@@ -31,7 +31,11 @@ export default function AutoComplete({ query, handleClose }: Props) {
                 ) : (
                     <div className="h-full overflow-scroll pb-8">
                         {keywords.map((keywords, idx) => (
-                            <Text size="sm" key={idx} className="block my-1">
+                            <Text
+                                size="sm"
+                                key={idx}
+                                className="block my-1 truncate"
+                            >
                                 {keywords}
                             </Text>
                         ))}
