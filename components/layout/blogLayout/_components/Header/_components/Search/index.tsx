@@ -4,23 +4,31 @@ import classNames from 'classnames';
 import { useState } from 'react';
 import AutoComplete from './_components/AutoComplete';
 import Recents from './_components/Recents';
+import { addRecentKeyword } from '@/utils/localstorage';
 
 export default function SearchComponent() {
     const [search, setSearch] = useState('');
-    const [isFocused, setIsFocused] = useState(true);
+    const [isFocused, setIsFocused] = useState(false);
     return (
         <div className="mx-auto max-w-md relative ">
-            <form action="" className="relative mx-auto w-max ">
+            <form
+                action=""
+                className="relative mx-auto w-max"
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    // 최근 검색어 추가
+                    addRecentKeyword(search)
+                }}
+            >
                 <input
                     type="search"
                     className="peer cursor-pointer relative z-10 h-12 w-12 rounded-full border bg-transparent pl-12 outline-none focus:cursor-text focus:border-primary focus:pl-16 focus:pr-4
-                    w-full 
+                    focus:w-full 
                     truncate
                     "
                     value={search}
                     onFocus={() => setIsFocused(true)}
-                    onBlur={() => setIsFocused(false)}
-                    onClick={() => setIsFocused(true)}
+     
                     onChange={(e) => setSearch(e.target.value)}
                 />
                 <svg

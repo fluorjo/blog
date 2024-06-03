@@ -4,16 +4,16 @@ import { useSidebar } from '@/components/Providers';
 import IconButton from '@/components/common/IconButton';
 import { HiBars3 } from 'react-icons/hi2';
 
+import { clearRecentKeyword } from '@/utils/localstorage';
 import { useRouter } from 'next/navigation';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { MdArrowBackIos } from 'react-icons/md';
+import 'react-toastify/ReactToastify.css';
 import SearchComponent from './_components/Search';
-import "react-toastify/ReactToastify.css";
 
 const Header: FC = () => {
     const { isOpen, setIsOpen } = useSidebar();
     const router = useRouter();
-
 
     return (
         <div className="navbar pl-8 bg-base-300 ">

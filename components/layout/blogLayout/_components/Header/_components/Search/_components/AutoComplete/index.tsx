@@ -15,21 +15,21 @@ export default function AutoComplete({ query, handleClose }: Props) {
     //   setRecents(recents)
     // }, [])
     return (
-        <div className="flex flex-col h-full z-10 ">
+        <div className="flex flex-col h-full z-10  ">
             <div className="p-2 overflow-hidden flex-1 ">
-                <div className="border-b border-primary pb-1 mb-2 shrink-0">
-                    <Text size="sm" weight="bold" className=" ml-1">
+                <div className="border-b border-primary pb-1 mb-2 shrink-0 truncate">
+                    <Text size="sm" weight="bold" className="ml-1">
                         {query}
                     </Text>
                 </div>
                 {keywords.length === 0 ? (
-                    <div className="h-full flex justify-center pt-4 ">
+                    <div className="h-full flex justify-center pt-4 bg-blue-300 w-full">
                         <Text color="grey" size="sm">
                             검색 결과가 없습니다.
                         </Text>
                     </div>
                 ) : (
-                    <div className="h-full overflow-scroll pb-8">
+                    <div className="h-full overflow-scroll pb-8w-full">
                         {keywords.map((keywords, idx) => (
                             <Text
                                 size="sm"
