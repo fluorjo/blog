@@ -1,14 +1,34 @@
 'use client';
 
+import { addRecentKeyword } from '@/utils/localstorage';
 import classNames from 'classnames';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
 import AutoComplete from './_components/AutoComplete';
 import Recents from './_components/Recents';
-import { addRecentKeyword } from '@/utils/localstorage';
 
 export default function SearchComponent() {
     const [search, setSearch] = useState('');
     const [isFocused, setIsFocused] = useState(false);
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                containerRef.current &&
+                !containerRef.current.contains(event.target as Node)
+            ) {
+                setIsFocused(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     return (
         <div className="mx-auto max-w-md relative ">
             <form
@@ -17,18 +37,17 @@ export default function SearchComponent() {
                 onSubmit={(e) => {
                     e.preventDefault();
                     // 최근 검색어 추가
-                    addRecentKeyword(search)
+                    addRecentKeyword(search);
                 }}
             >
                 <input
                     type="search"
-                    className="peer cursor-pointer relative z-10 h-12 w-12 rounded-full border bg-transparent pl-12 outline-none focus:cursor-text focus:border-primary focus:pl-16 focus:pr-4
-                    focus:w-full 
+                    className="peer cursor-pointer relative z-10 h-12 w-full rounded-full border bg-transparent pl-12 outline-none focus:cursor-text focus:border-primary 
+                   
                     truncate
                     "
                     value={search}
                     onFocus={() => setIsFocused(true)}
-     
                     onChange={(e) => setSearch(e.target.value)}
                 />
                 <svg
@@ -48,21 +67,23 @@ export default function SearchComponent() {
                     />
                 </svg>
             </form>
-            <div
-                className={classNames(
-                    'w-full border border-primary h-52 absolute bg-primary-content my-2 rounded-md z-10 ',
-                    { hidden: !isFocused },
-                )}
-            >
-                {!search ? (
-                    <Recents handleClose={() => setIsFocused(false)} />
-                ) : (
-                    <AutoComplete
-                        handleClose={() => setIsFocused(false)}
-                        query={search}
-                    />
-                )}
-            </div>
+            {isFocused ? (
+                <div
+                    ref={containerRef}
+                    className={classNames(
+                        'w-full border border-primary h-52 absolute bg-primary-content my-2 rounded-md z-10',
+                    )}
+                >
+                    {!search ? (
+                        <Recents handleClose={() => setIsFocused(false)} />
+                    ) : (
+                        <AutoComplete
+                            handleClose={() => setIsFocused(false)}
+                            query={search}
+                        />
+                    )}
+                </div>
+            ) : null}
         </div>
     );
 }
