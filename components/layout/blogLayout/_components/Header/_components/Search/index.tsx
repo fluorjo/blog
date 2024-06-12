@@ -42,17 +42,14 @@ export default function SearchComponent() {
             >
                 <input
                     type="search"
-                    className="peer cursor-pointer relative z-10 h-12 w-full rounded-full border bg-transparent pl-12 outline-none focus:cursor-text focus:border-primary 
-                   
-                    truncate
-                    "
+                    className="peer cursor-pointer relative z-10 h-12 w-full rounded-full border bg-transparent pl-12  outline-none focus:cursor-text focus:border-primary truncate"
                     value={search}
                     onFocus={() => setIsFocused(true)}
                     onChange={(e) => setSearch(e.target.value)}
                 />
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="absolute inset-y-0 my-auto h-8 w-12 border-r border-transparent stroke-primary px-3.5  peer-focus:border-primary peer-focus:stroke-primary
+                    className="absolute inset-y-0 my-auto h-8 w-12 border-r border-transparent stroke-primary px-3.5   peer-focus:stroke-primary
             
             "
                     fill="none"
