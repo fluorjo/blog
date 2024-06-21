@@ -48,25 +48,33 @@ const PostCard: FC<PostCardProps> = ({
                     className={cn('bg-white ', className)}
                 >
                     {preview_image_url ? (
-                        <div className="relative aspect-[1.8/1] w-full">
-                            <Image
-                                src={preview_image_url ?? '/vector.png'}
-                                fill
-                                sizes="360px"
-                                alt={title}
-                                className="object-cover"
-                                priority
-                            />
+                        <div className="p-2 border border-gray-300 rounded-md flex flex-row">
+                            <div className="flex flex-col w-[80%]">
+                                <h2 className="text-lg font-medium">{title}</h2>
+                                <p className="line-clamp-3 text-sm text-gray-500">
+                                    {content}
+                                </p>
+                            </div>
+
+                            <div className="relative aspect-[1.8/1] w-32">
+                                <Image
+                                    src={preview_image_url ?? '/vector.png'}
+                                    fill
+                                    sizes="360px"
+                                    alt={title}
+                                    className="object-cover"
+                                    priority
+                                />
+                            </div>
                         </div>
                     ) : (
-                        <div></div>
+                        <div className="p-2 border border-gray-300 rounded-md">
+                            <h2 className="text-lg font-medium">{title}</h2>
+                            <p className="line-clamp-3 text-sm text-gray-500">
+                                {content}
+                            </p>
+                        </div>
                     )}
-                    <div className="p-2 border border-gray-300 rounded-md">
-                        <h2 className="text-lg font-medium">{title}</h2>
-                        <p className="line-clamp-3 text-sm text-gray-500">
-                            {content}
-                        </p>
-                    </div>
                 </Link>
             )}
         </>
